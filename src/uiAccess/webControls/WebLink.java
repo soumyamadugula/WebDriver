@@ -7,11 +7,12 @@ import webDriverWrapper.iControlHierarchy.ILink;
 
 public class WebLink extends WebControl
 {
-    public WebLink(Browser aBrowser, Locator aLocator){
-        super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.Link)
+    public WebLink(Browser Browser, Locator Locator){
+        super(Browser,Locator.LocatorType, Locator.ControlLocator, ControlType.Link);
      }
 
-    private ILink getLink()
+    @SuppressWarnings("unused")
+	private ILink getLink()
     {
             return (ILink)Control;
         

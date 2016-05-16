@@ -5,6 +5,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.List;
 
+import org.openqa.selenium.Keys;
+
 import webDriverWrapper.ControlAccess;
 import webDriverWrapper.ControlType;
 import webDriverWrapper.LocatorType;
@@ -39,7 +41,7 @@ public interface IControl {
 
   public  void Submit();
 
-  public void SendKeys(String text);
+  public void SendKeys(Keys down);
 
   public  void DesktopMouseClick();
 

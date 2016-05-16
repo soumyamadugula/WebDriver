@@ -2,7 +2,10 @@ package webDriverWrapper;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
 import java.io.*;
+
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
 public class Drivers {
@@ -59,12 +62,7 @@ public class Drivers {
 	        private WebDriver getIEDriver()
 	        {
 	            
-	            
-	                InternetExplorerOptions options = new InternetExplorerOptions();
-	                options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
-	                options.IgnoreZoomLevel = true;
-	                return new InternetExplorerDriver(Config.DriverServerPath,options);
-	            
+	        	return new InternetExplorerDriver(Config.getDriverServerPath());
 
 	        }
 
@@ -100,7 +98,8 @@ public class Drivers {
 
 	        public String getBinaryPath() { }
 	        public String setBinaryPath() { }
-	   	         WebDriverBackedSelenium getBackedSelenium()
+	   	         @SuppressWarnings("deprecation")
+				WebDriverBackedSelenium getBackedSelenium()
 	        {
 	            
 	            
@@ -218,7 +217,8 @@ public class Drivers {
 
 	        public void SwitchBrowser(String BrowserTitle)
 	        {
-	            String CurrentWindow = getCurrentWindowHandle();
+	            @SuppressWarnings("unused")
+				String CurrentWindow = getCurrentWindowHandle();
 
 	            Iterable<String> AvailableWindowHandles = BrowserHandle.getWindowHandles();
 

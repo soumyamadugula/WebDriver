@@ -12,16 +12,16 @@ import webDriverWrapper.iControlHierarchy.ICalender;
 
 public class SeleniumWebCalender extends SeleniumWebControls implements ICalender{
 	
-	public SeleniumWebCalender(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebCalender(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement, ControlType, access);
 	
-			this.aControlAccess = access;
+			this.ControlAccess = access;
      }
 
 
      //public ReadOnlyCollection<SeleniumWebButton> MoveToNextMonth()
      //{
-     //    return Utility.GetControlsFromWebElements(aWebElement.findElements(By.TagName("a")), ControlType.Button, controlAccess).Cast<SeleniumWebButton>().ToList().AsReadOnly();
+     //    return Utility.GetControlsFromWebElements(WebElement.findElements(By.TagName("a")), ControlType.Button, controlAccess).Cast<SeleniumWebButton>().ToList().AsReadOnly();
      //}
 
      public SeleniumWebControls GetCalenderHeader(String locator, LocatorType locatorType)
@@ -29,28 +29,28 @@ public class SeleniumWebCalender extends SeleniumWebControls implements ICalende
          switch(locatorType)
          {
              case ClassName:
-                 return (SeleniumWebControls)Utility.GetControlFromWebElement(aWebElement.findElement(By.className(locator)), ControlType.Custom, aControlAccess);
+                 return (SeleniumWebControls)Utility.GetControlFromWebElement(WebElement.findElement(By.className(locator)), webDriverWrapper.ControlType.Custom, ControlAccess);
 
              case Css:
-                 return (SeleniumWebControls)Utility.GetControlFromWebElement(aWebElement.findElement(By.cssSelector(locator)), ControlType.Custom, aControlAccess);
+                 return (SeleniumWebControls)Utility.GetControlFromWebElement(WebElement.findElement(By.cssSelector(locator)), webDriverWrapper.ControlType.Custom, ControlAccess);
 
              case Id:
-                 return (SeleniumWebControls)Utility.GetControlFromWebElement(aWebElement.findElement(By.id(locator)), ControlType.Custom, aControlAccess);
+                 return (SeleniumWebControls)Utility.GetControlFromWebElement(WebElement.findElement(By.id(locator)), webDriverWrapper.ControlType.Custom, ControlAccess);
 
              case LinkText:
-                 return (SeleniumWebControls)Utility.GetControlFromWebElement(aWebElement.findElement(By.linkText(locator)), ControlType.Custom, aControlAccess);
+                 return (SeleniumWebControls)Utility.GetControlFromWebElement(WebElement.findElement(By.linkText(locator)), webDriverWrapper.ControlType.Custom, ControlAccess);
 
              case Name:
-                 return (SeleniumWebControls)Utility.GetControlFromWebElement(aWebElement.findElement(By.name(locator)), ControlType.Custom, aControlAccess);
+                 return (SeleniumWebControls)Utility.GetControlFromWebElement(WebElement.findElement(By.name(locator)), webDriverWrapper.ControlType.Custom, ControlAccess);
 
              case PartialLinkText:
-                 return (SeleniumWebControls)Utility.GetControlFromWebElement(aWebElement.findElement(By.partialLinkText(locator)), ControlType.Custom, aControlAccess);
+                 return (SeleniumWebControls)Utility.GetControlFromWebElement(WebElement.findElement(By.partialLinkText(locator)), webDriverWrapper.ControlType.Custom, ControlAccess);
 
              case Xpath:
-                 return (SeleniumWebControls)Utility.GetControlFromWebElement(aWebElement.findElement(By.xpath(locator)), ControlType.Custom, aControlAccess);
+                 return (SeleniumWebControls)Utility.GetControlFromWebElement(WebElement.findElement(By.xpath(locator)), webDriverWrapper.ControlType.Custom, ControlAccess);
 
              default:
-                 return (SeleniumWebControls)Utility.GetControlFromWebElement(aWebElement.findElement(By.tagName(locator)), ControlType.Custom, aControlAccess);
+                 return (SeleniumWebControls)Utility.GetControlFromWebElement(WebElement.findElement(By.tagName(locator)), webDriverWrapper.ControlType.Custom, ControlAccess);
                             
          }
      }
@@ -59,7 +59,7 @@ public class SeleniumWebCalender extends SeleniumWebControls implements ICalende
      public SeleniumWebControls GetMonthAndYear(String locator, LocatorType locatorType, String headerLocator, LocatorType headerLocatorType)
      {
 
-         return (SeleniumWebControls)Utility.GetControlFromWebElement(GetCalenderHeader(headerLocator, headerLocatorType).aWebElement.findElement(By.className(locator)), ControlType.Custom, aControlAccess);
+         return (SeleniumWebControls)Utility.GetControlFromWebElement(GetCalenderHeader(headerLocator, headerLocatorType).WebElement.findElement(By.className(locator)), webDriverWrapper.ControlType.Custom, ControlAccess);
      }
  
 }

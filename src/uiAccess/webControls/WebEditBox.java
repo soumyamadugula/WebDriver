@@ -7,8 +7,8 @@ import webDriverWrapper.iControlHierarchy.IEditBox;
 
 public class WebEditBox extends WebControl {
 	
-        public WebEditBox(Browser aBrowser, Locator aLocator){
-            super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.EditBox)}
+        public WebEditBox(Browser Browser, Locator Locator){
+            super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.EditBox);}
         { }
 
         private IEditBox getEditBox()
@@ -24,12 +24,12 @@ public class WebEditBox extends WebControl {
         /// <param name="Text"></param>
         public void JSSendKeys(String Text)
         {
-            EditBox.JSSendKeys(Text);            
+        	 this.getEditBox().JSSendKeys(Text);            
         }
 
         public void Clear()
         {
-            EditBox.Clear();
+        	this.getEditBox().Clear();
         }
 
      

@@ -7,8 +7,8 @@ import webDriverWrapper.ControlType;
 import webDriverWrapper.iControlHierarchy.IImage;
 
 public class SeleniumWebImage extends SeleniumWebControls implements IImage {
-	public SeleniumWebImage(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebImage(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement, ControlType, access);
 	
 	}
 }

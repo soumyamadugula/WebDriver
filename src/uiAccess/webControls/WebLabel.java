@@ -8,10 +8,11 @@ import webDriverWrapper.iControlHierarchy.ILabel;
 public class WebLabel extends WebControl{
 
         public WebLabel(Browser aBrowser, Locator aLocator){
-            super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.Label)}
+            super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.Label);}
         { }
 
-        private ILabel getLabel()
+        @SuppressWarnings("unused")
+		private ILabel getLabel()
         {
                 return (ILabel)Control;
             

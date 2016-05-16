@@ -2,19 +2,21 @@ package uiAccess.webControls;
 
 import uiAccess.Locator;
 import uiAccess.Utility;
+import webDriverWrapper.ControlType;
 import webDriverWrapper.Drivers.Browser;
+import webDriverWrapper.LocatorType;
 import webDriverWrapper.iControlHierarchy.ICalender;
 
 public class WebCalender extends WebControl {
 	
-	        private Browser browser;
+	        public Browser browser;
 	        private Locator locator;
 
-	        public WebCalender(Browser aBrowser, Locator aLocator){
-	            super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.Calender)}
+	        public WebCalender(Browser Browser, Locator Locator){
+	            super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.Calender);}
 	        {
-	            browser = aBrowser;
-	            locator = aLocator;
+	        	 this.browser = browser;
+	             this.locator = locator;
 	        }
 
 	        private ICalender getCalender()
@@ -25,25 +27,25 @@ public class WebCalender extends WebControl {
 	            
 	        }
 
-	        private Locator calenderHeader;
+	        private Locator calendarHeader;
 	        public Locator getCalenderHeaderLocator()
 	        { 
 	            
 	            
-	                if(null == calenderHeader)
+	                if(null ==  this.calendarHeader)
 	                {
-	                    return new Locator(String.Format("{0}/div", locator), LocatorType.Xpath);
+	                    return new Locator(String.format("{0}/div", locator), LocatorType.Xpath);
 	                }
 	                else
 	                {
-	                    return calenderHeader;
+	                    return  this.calendarHeader;
 	                }
 	               
 	            }
-	        public Locator setCalenderHeaderLocator()
-	            {
-	                calenderHeader = value;
-	            }
+	        public void setCalenderHeaderLocator(Locator calendarHeader) {
+	            
+	        	  this.calendarHeader = calendarHeader;
+	            
 	        }
 
 	        private Locator calenderMonthYear;
@@ -52,18 +54,18 @@ public class WebCalender extends WebControl {
 	            
 	                if (null == calenderMonthYear)
 	                {
-	                    return new Locator(String.Format("{0}/div", CalenderHeaderLocator), LocatorType.Xpath);
+	                    return new Locator(String.format("{0}/div", this.locator), LocatorType.Xpath);
 	                }
 	                else
 	                {
-	                    return calenderMonthYear; 
+	                	  return this.calendarHeader;
 	                    }
-
+	        }
 	            
-	                public Locator setCalenderMonthYearLocator()
-	            {
-	                calenderMonthYear = value;
-	            }
+	                public void setCalenderMonthYearLocator() {
+	            
+	                calenderMonthYear = calendarHeader;
+	            
 	        }
 	                
 	        public WebControl getCalenderHeader()
@@ -77,9 +79,8 @@ public class WebCalender extends WebControl {
 	        public WebControl getGetMonthAndYear()
 	        {
 	            
-	                return Utility.GetWebControlFromIContol(Calender.GetMonthAndYear(CalenderMonthYearLocator.ControlLocator, CalenderMonthYearLocator.LocatorType, CalenderHeaderLocator.ControlLocator, CalenderHeaderLocator.LocatorType), browser, locator, ControlType.Custom);
-	            
-	        }
+	            return Utility.GetWebControlFromIContol(this.getCalender().GetMonthAndYear(this.getCalenderMonthYearLocator().ControlLocator, this.getCalenderMonthYearLocator().LocatorType, this.getCalenderHeaderLocator().ControlLocator, this.getCalenderHeaderLocator().LocatorType), this.browser, this.locator, ControlType.Custom);
+	            	        }
 
 	        //public WebControl NextMonth 
 	        //{ 
@@ -92,8 +93,8 @@ public class WebCalender extends WebControl {
 	        public WebControl getGetCalenderHeader()
 	        {
 	            
-	                return Utility.GetWebControlFromIContol(Calender.GetCalenderHeader(CalenderHeaderLocator.ControlLocator, CalenderHeaderLocator.LocatorType), browser, locator, ControlType.Custom);
-	           
+	        	  return Utility.GetWebControlFromIContol(this.getCalender().GetCalenderHeader(this.getCalenderHeaderLocator().ControlLocator, this.getCalenderHeaderLocator().LocatorType), this.browser, this.locator, ControlType.Custom);
+	              
 	        }
 
 	        //public void NextMonth()

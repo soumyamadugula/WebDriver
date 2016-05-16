@@ -270,7 +270,7 @@ public class Utility {
           return aControl;
       }
 
-      static By GetByFromLocator(LocatorType locatorType, String locator)
+      public static By GetByFromLocator(LocatorType locatorType, String locator)
       {
           switch (locatorType)
           {

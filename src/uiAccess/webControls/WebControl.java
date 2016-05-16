@@ -1,10 +1,15 @@
 package uiAccess.webControls;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
 
+import org.openqa.selenium.Keys;
+
+import uiAccess.Actions;
+import uiAccess.Locator;
 import uiAccess.Utility;
 import webDriverWrapper.ControlAccess;
 import webDriverWrapper.ControlType;
@@ -14,8 +19,14 @@ import webDriverWrapper.iControlHierarchy.IControl;
 
 public class WebControl {
 	 private ControlAccess myControlAccess;
+	public static IControl Control;
+	private IControl ControlType;
 
-      IControl Control;
+      public void getControl() {}
+      @SuppressWarnings("static-access")
+	public IControl setControl() {
+		return this.Control;
+				}
 
      //private Browser myBrowser;
 
@@ -23,8 +34,10 @@ public class WebControl {
 
      //private String myLocator;
 
-    ControlType myControlType;
-
+   public void getmyControlType(){}
+   public IControl setmyControlType() {
+		return this.ControlType;
+				}
 
      public WebControl(Browser aBrowser, LocatorType aLocatorType, String aLocator, ControlType aControlType)
      {
@@ -43,7 +56,7 @@ public class WebControl {
          myControlAccess.Browser = aBrowser;
          myControlAccess.LocatorType = aLocator.LocatorType;
          myControlAccess.Locator = aLocator.ControlLocator;
-         myControlAccess.ControlType = ControlType.Custom;
+         myControlAccess.ControlType = ControlType;
          myControlAccess.IntializeControlAccess();
          //Control = myControlAccess.GetControl();
      }
@@ -52,7 +65,7 @@ public class WebControl {
      public boolean getEnabled()
      {
          
-             return Control.Enabled;
+             return Control.getEnabled();
          
 
      }
@@ -65,30 +78,30 @@ public class WebControl {
      public Image getScreenImage()
      {
         
-             return Control.GetControlImage;
+             return Control.getControlImage();
          
      }
 
      public Point getClickablePoint()
      {
-          return Control.ClickablePoint; 
+          return Control.getClickablePoint(); 
      }
 
      public boolean getVisible()
      {
-          return Control.Visible; 
+          return Control.getVisible(); 
 
      }
 
      public String getText()
      {
-          return Control.Text; 
+          return Control.getText(); 
      }
 
      public String getInnerHtml()
      {
          
-             return Control.InnerHtml(myControlAccess.Browser);
+             return Control.InnerHtml(myControlAccess.getBrowser());
          
      }
 
@@ -96,18 +109,18 @@ public class WebControl {
      {
          
          
-             return Control.OuterHtml(myControlAccess.Browser);
+             return Control.OuterHtml(myControlAccess.getBrowser());
          
      }
 
-     public booleanean getIsChecked()
+     public boolean getIsChecked()
      {
-          return Control.IsChecked; 
+          return Control.getIsChecked(); 
      }
 
      public String getTagName()
      {
-         return Control.TagName; 
+         return Control.getTagName(); 
      }
 
      public Actions getAction()
@@ -147,15 +160,15 @@ public class WebControl {
 
      public List<WebControl> GetChildren(Locator aLocator, ControlType aControlType)
      {
-         List<IControl> aIControlList = new List<IControl>();
+         List<IControl> aIControlList = new ArrayList<IControl>();
          aIControlList = myControlAccess.GetChildren(aLocator.ControlLocator, aLocator.LocatorType, aControlType);
 
-         return Utility.GetWebControlsFromIControlList(aIControlList, myControlAccess.Browser, aLocator, aControlType);
+         return Utility.GetWebControlsFromIControlList(aIControlList, myControlAccess.getBrowser(), aLocator, aControlType);
      }
 
      public void Highlight()
      {
-         Control.Highlight(myControlAccess.Browser);
+         Control.Highlight(myControlAccess.getBrowser());
      }
 
      public void ClickAt()
@@ -165,7 +178,7 @@ public class WebControl {
 
      public void Click()
      {
-         Control.ExecuteJavaScript(myControlAccess.Browser, "arguments[0].hidden = false");
+         Control.ExecuteJavaScript(myControlAccess.getBrowser(), "arguments[0].hidden = false");
          Control.Click();
      }
 
@@ -174,7 +187,7 @@ public class WebControl {
          Control.Submit();
      }
 
-     public void SendKeys(String keys)
+     public void SendKeys(Keys keys)
      {
          Control.SendKeys(keys);
      }
@@ -205,19 +218,20 @@ public class WebControl {
          return Control.GetAttributeFromNode(AttributeName);
      }
 
-     public Dictionary<String, Object> GetAttributes()
+     @SuppressWarnings("unchecked")
+	public Dictionary<String, Object> GetAttributes()
      {
          return (Dictionary<String, Object>)Executejavascript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;");
      }
 
      public Object Executejavascript(String JavaScript)
      {
-         return Control.ExecuteJavaScript(myControlAccess.Browser, JavaScript);
+         return Control.ExecuteJavaScript(myControlAccess.getBrowser(), JavaScript);
      }
 
      public Object InjectJSInBrowser(String JavaScript)
      {
-         return Control.InjectJSInBrowser(myControlAccess.Browser, JavaScript);
+         return Control.InjectJSInBrowser(myControlAccess.getBrowser(), JavaScript);
      }
 
      public boolean HasChildren()
@@ -234,14 +248,14 @@ public class WebControl {
      {
          List<IControl> aIControlList = new ArrayList<IControl>();
          aIControlList = Control.WaitForChildren(maxTimeout);
-         return Utility.GetWebControlsFromIControlList(aIControlList, myControlAccess.Browser, new Locator(".//*", LocatorType.Xpath), ControlType.Custom);
+         return Utility.GetWebControlsFromIControlList(aIControlList, myControlAccess.getBrowser(), new Locator(".//*", LocatorType.Xpath), ControlType);
      }
 
      public List<WebControl> WaitForChildren(String xpath, int maxTimeout)
      {
          List<IControl> aIControlList = new ArrayList<IControl>();
          aIControlList = Control.WaitForChildren(xpath, maxTimeout);
-         return Utility.GetWebControlsFromIControlList(aIControlList, myControlAccess.Browser, new Locator(xpath, LocatorType.Xpath), ControlType.Custom);
+         return Utility.GetWebControlsFromIControlList(aIControlList, myControlAccess.getBrowser(), new Locator(xpath, LocatorType.Xpath), ControlType);
      }
 
 

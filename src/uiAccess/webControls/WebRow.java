@@ -1,6 +1,7 @@
 package uiAccess.webControls;
 
 import uiAccess.Locator;
+import webDriverWrapper.ControlType;
 import webDriverWrapper.Drivers.Browser;
 import webDriverWrapper.iControlHierarchy.IWebRow;
 
@@ -9,11 +10,11 @@ public class WebRow extends  WebControl
     private Browser browser;
     private Locator locator;
 
-    public WebRow(Browser aBrowser, Locator aLocator){
-        super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.WebRow)}
+    public WebRow(Browser Browser, Locator Locator){
+        super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.WebRow);}
     {
-        browser = aBrowser;
-        locator = aLocator;
+        browser = Browser;
+        locator = Locator;
     }
     private IWebRow getWebRows()
     {
@@ -22,6 +23,6 @@ public class WebRow extends  WebControl
       }
     public ReadOnlyCollection<WebCell> getGetCells()
     {
-            return Utility.GetWebControlsFromIControlList(WebRows.GetAllCells().Cast<IControl>().ToList(), browser, locator, ControlType.WebCell).Cast<WebCell>().ToList().AsReadOnly();
+            return Utility.GetWebControlsFromIControlList(this.getWebRows().GetAllCells().Cast<IControl>().ToList(), this.getbrowser(), this.getlocator(), ControlType.WebCell).Cast<WebCell>().ToList().AsReadOnly();
    }
 }

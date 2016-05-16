@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -22,27 +23,27 @@ import webDriverWrapper.iControlHierarchy.IControl;
 
 public class SeleniumWebControls implements IControl {
 
-     protected ControlType aControlType;
-      public WebElement aWebElement;
-      ControlAccess aControlAccess;
+     protected ControlType ControlType;
+      public WebElement WebElement;
+      ControlAccess ControlAccess;
 
      
-     SeleniumWebControls(WebElement aWebElement, ControlType aControlType)
+     SeleniumWebControls(WebElement WebElement, ControlType ControlType)
      {
-         this.aWebElement = aWebElement;
-         this.aControlType = aControlType;
+         this.WebElement = WebElement;
+         this.ControlType = ControlType;
      }
 
-     public SeleniumWebControls(WebElement aWebElement, ControlType aControlType, ControlAccess access){
+     public SeleniumWebControls(WebElement WebElement, ControlType ControlType, ControlAccess access){
          super();
-         this.aControlAccess = access;
+         this.ControlAccess = access;
      }
 
    
      public boolean getEnabled()
      {
          
-             return aWebElement.isEnabled();
+             return WebElement.isEnabled();
 
          
      }
@@ -62,7 +63,7 @@ public class SeleniumWebControls implements IControl {
      {
          
          
-             return new Rectangle(ScrollToElement(), aWebElement.Size);
+             return new Rectangle(ScrollToElement(), WebElement.Size);
          
      }
 
@@ -71,7 +72,7 @@ public class SeleniumWebControls implements IControl {
       
       
 
-             byte[] imageArray = ((ITakesScreenshot)aControlAccess.Browser.BrowserHandle).GetScreenshot().AsByteArray;
+             byte[] imageArray = ((ITakesScreenshot)ControlAccess.Browser.BrowserHandle).GetScreenshot().AsByteArray;
              byte[] ms = new MemoryStream(imageArray);
              return Image.FromStream(ms);
              //Rectangle controlBox = BoundingRectangle;
@@ -106,7 +107,7 @@ public class SeleniumWebControls implements IControl {
      {
          
          
-             return aWebElement.isDisplayed();
+             return WebElement.isDisplayed();
          
      }
 
@@ -114,7 +115,7 @@ public class SeleniumWebControls implements IControl {
      {
          
          
-             return aWebElement.getTagName();
+             return WebElement.getTagName();
          
      }
 
@@ -122,7 +123,7 @@ public class SeleniumWebControls implements IControl {
      {
          
          
-             return Utility.GetControlFromWebElement(aWebElement.findElement(By.xpath("./..")), ControlType.Custom, this.aControlAccess);
+             return Utility.GetControlFromWebElement(WebElement.findElement(By.xpath("./..")), webDriverWrapper.ControlType.Custom, this.ControlAccess);
          
      }
 
@@ -130,56 +131,56 @@ public class SeleniumWebControls implements IControl {
      {
          
          
-             return aWebElement.getText();
+             return WebElement.getText();
          
      }
 
-     public String OuterHtml(Browser aBrowser)
+     public String OuterHtml(Browser Browser)
      {
-         return (String)ExecuteJavaScript(aBrowser, "return arguments[0].outerHTML;");
+         return (String)ExecuteJavaScript(Browser, "return arguments[0].outerHTML;");
      }
 
-     public String InnerHtml(Browser aBrowser)
+     public String InnerHtml(Browser Browser)
      {
-         return (String)ExecuteJavaScript(aBrowser, "return arguments[0].innerHTML;");
+         return (String)ExecuteJavaScript(Browser, "return arguments[0].innerHTML;");
      }
 
      public boolean getIsChecked()
      {
          
-             return aWebElement.isSelected();
+             return WebElement.isSelected();
          
      }
 
      public Point ScrollToElement()
      {
-         //return ((ILocatable)aWebElement).Coordinates.LocationOnScreen;
-         //ExecuteJavaScript(aControlAccess.Browser, "arguments[0].scrollIntoView(true);");
-         return ((RemoteWebElement)aWebElement).LocationOnScreenOnceScrolledIntoView;
+         //return ((ILocatable)WebElement).Coordinates.LocationOnScreen;
+         //ExecuteJavaScript(ControlAccess.Browser, "arguments[0].scrollIntoView(true);");
+         return ((RemoteWebElement)WebElement).LocationOnScreenOnceScrolledIntoView;
      }
 
-     public List<IControl> GetChildren(String Locator, LocatorType aLocatorType, ControlType aControlType, ControlAccess access)
+     public List<IControl> GetChildren(String Locator, LocatorType aLocatorType, ControlType ControlType, ControlAccess access)
      {
-         return Utility.GetChildren(Locator, aLocatorType, aControlType, aWebElement, access);
+         return Utility.GetChildren(Locator, aLocatorType, ControlType, WebElement, access);
      }
 
      private void WaitForVisible()
      {
-         WebDriverWait wait = new WebDriverWait(aControlAccess.Browser.BrowserHandle, TimeSpan.FromMinutes(2));
+         WebDriverWait wait = new WebDriverWait(ControlAccess.Browser.BrowserHandle, TimeSpan.FromMinutes(2));
 
-         wait.Until(ExpectedConditions.ElementIsVisible(Utility.GetByFromLocator(aControlAccess.LocatorType, aControlAccess.Locator)));
+         wait.Until(ExpectedConditions.ElementIsVisible(Utility.GetByFromLocator(ControlAccess.LocatorType, ControlAccess.Locator)));
      }
 
      public void Click()
      {
          WaitForVisible();
-         aWebElement.click();
+         WebElement.click();
      }
 
      public void Submit()
      {
          WaitForVisible();
-         aWebElement.submit();
+         WebElement.submit();
      }
 
      public void DesktopMouseClick()
@@ -200,70 +201,67 @@ public class SeleniumWebControls implements IControl {
          Win32.DeskTopMouseDrag(this, offsetX, offsetY);
      }
 
-     public void SendKeys(String text)
-     {
-         WaitForVisible();
-         aWebElement.sendKeys(text);
-     }
+    
 
-     public void Highlight(Browser aBrowser)
+     public void Highlight(Browser Browser)
      {
-         IJavascriptExecutor aScriptExecutor = (IJavascriptExecutor)aBrowser.BrowserHandle;
+         JavascriptExecutor ScriptExecutor = (JavascriptExecutor)Browser.BrowserHandle;
 
-         Object aStyle = aScriptExecutor.executeScript("arguments[0].getAttribute('style');", aWebElement);
-         aScriptExecutor.executeScript("arguments[0].setAttribute('style', arguments[1]);", aWebElement,
+         @SuppressWarnings("unused")
+		Object Style = ScriptExecutor.executeScript("arguments[0].getAttribute('style');", WebElement);
+         ScriptExecutor.executeScript("arguments[0].setAttribute('style', arguments[1]);", WebElement,
                                        "border: 4px solid red;");
 
          //for (int i = 0; i < 5; i++)
          //{
-         //    //aScriptExecutor.executeScript("arguments[0].setAttribute('style', arguments[1]);", aWebElement,"color: red; border: 4px solid red;");
+         //    //aScriptExecutor.executeScript("arguments[0].setAttribute('style', arguments[1]);", WebElement,"color: red; border: 4px solid red;");
 
-         //    object aStyle = aScriptExecutor.executeScript("arguments[0].getAttribute('style');", aWebElement);
-         //    aScriptExecutor.executeScript("arguments[0].setAttribute('style', arguments[1]);", aWebElement,
+         //    object aStyle = aScriptExecutor.executeScript("arguments[0].getAttribute('style');", WebElement);
+         //    aScriptExecutor.executeScript("arguments[0].setAttribute('style', arguments[1]);", WebElement,
          //                                  "border: 4px solid red;");
          //    //Thread.Sleep(50);
 
          //    //aScriptExecutor.executeScript("arguments[0].setAttribute('style', arguments[1]);",
-         //    //    aWebElement, aStyle);
+         //    //    WebElement, aStyle);
          //}
      }
 
-     public Object ExecuteJavaScript(Browser aBrowser, String JavaScript)
+     public Object ExecuteJavaScript(Browser Browser, String JavaScript)
      {
-         JavascriptExecutor aScriptExecutor = (JavascriptExecutor)aBrowser.BrowserHandle;
+         JavascriptExecutor aScriptExecutor = (JavascriptExecutor)Browser.BrowserHandle;
 
-         return aScriptExecutor.executeScript(JavaScript, aWebElement);
+         return aScriptExecutor.executeScript(JavaScript, WebElement);
 
      }
 
-     public Object InjectJSInBrowser(Browser aBrowser, String JavaScript)
+     public Object InjectJSInBrowser(Browser Browser, String JavaScript)
      {
-         JavascriptExecutor aScriptExecutor = (JavascriptExecutor)aBrowser.BrowserHandle;
+         JavascriptExecutor aScriptExecutor = (JavascriptExecutor)Browser.BrowserHandle;
 
          return aScriptExecutor.executeScript(JavaScript);
      }
 
      public String GetAttributeFromNode(String Attribute)
      {
-         return aWebElement.getAttribute(Attribute);
+         return WebElement.getAttribute(Attribute);
      }
 
 
      public boolean HasChildren()
      {
-         return GetChildren("//*", LocatorType.Xpath, ControlType.Custom, aControlAccess).Count() > 0;
+         return GetChildren("//*", LocatorType.Xpath, webDriverWrapper.ControlType.Custom, ControlAccess).Count() > 0;
      }
 
      public boolean HasChildrenWithXpath(String xpath)
      {
-         return GetChildren(xpath, LocatorType.Xpath, ControlType.Custom, aControlAccess).Count() > 0;
+         return GetChildren(xpath, LocatorType.Xpath, webDriverWrapper.ControlType.Custom, ControlAccess).Count() > 0;
      }
 
      public List<IControl> WaitForChildren(int maxTimeout)
      {
          Date start;
          double timeElapsed = 0;
-         Select element = new Select(aWebElement);
+         Select element = new Select(WebElement);
 
 
          start = new Date();
@@ -273,14 +271,14 @@ public class SeleniumWebControls implements IControl {
              timeElapsed = ((TimeSpan)(new Date() - start)).TotalMilliseconds;
          }
 
-         return GetChildren(".//*", LocatorType.Xpath, ControlType.Custom, aControlAccess);
+         return GetChildren(".//*", LocatorType.Xpath, webDriverWrapper.ControlType.Custom, ControlAccess);
      }
 
      public List<IControl> WaitForChildren(String xpath, int maxTimeout)
      {
          Date start;
          double timeElapsed = 0;
-         Select element = new Select(aWebElement);
+         Select element = new Select(WebElement);
 
 
          start = new Date();
@@ -290,9 +288,17 @@ public class SeleniumWebControls implements IControl {
              timeElapsed = ((TimeSpan)(new Date() - start)).TotalMilliseconds;
          }
 
-         return GetChildren(xpath, LocatorType.Xpath, ControlType.Custom, aControlAccess);
+         return GetChildren(xpath, LocatorType.Xpath, webDriverWrapper.ControlType.Custom, ControlAccess);
      }
 
-}
+	@Override
+	public void SendKeys(Keys text) {
+		 
+	         WaitForVisible();
+	         WebElement.sendKeys(text);
+	     }
+		
+	}
+
 
 

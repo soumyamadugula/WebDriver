@@ -10,8 +10,8 @@ import webDriverWrapper.iControlHierarchy.IDialog;
 
 public class SeleniumWebDialog extends SeleniumWebControls implements IDialog {
 	
-	public SeleniumWebDialog(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebDialog(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement, ControlType, access);
 	
 	}
 	WebDriver webDriver = new FirefoxDriver();
@@ -22,22 +22,22 @@ public class SeleniumWebDialog extends SeleniumWebControls implements IDialog {
 
        public void AcceptDialog()
        {
-           aControlAccess.getAction().WebDriver.SwitchTo().Alert().Accept();
+           ControlAccess.Actions.WebDriver.SwitchTo().Alert().Accept();
        }
 
        public void CancelDialog()
        {
-           aControlAccess.getAction().WebDriver.SwitchTo().Alert().Dismiss();
+           ControlAccess.getAction().WebDriver.SwitchTo().Alert().Dismiss();
        }
    
        public String GetDialogText()
        {
-          return aControlAccess.getAction().webDriver.SwitchTo().Alert().Text;
+          return ControlAccess.getAction().webDriver.SwitchTo().Alert().Text;
        }
 
        public void SendText(String text)
        {
-           aControlAccess.getAction().webDriver.SwitchTo().Alert().SendKeys(text);
+           ControlAccess.getAction().webDriver.SwitchTo().Alert().SendKeys(text);
        }                   
 
 }

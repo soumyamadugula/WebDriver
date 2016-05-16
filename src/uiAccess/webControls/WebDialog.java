@@ -7,8 +7,8 @@ import webDriverWrapper.iControlHierarchy.IDialog;
 
 public class WebDialog extends WebControl {
 	
-        public WebDialog(Browser aBrowser, Locator aLocator){
-            super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.Dialog)}
+        public WebDialog(Browser Browser, Locator Locator){
+            super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.Dialog);}
         { }
    
         private IDialog getDialog()
@@ -20,27 +20,27 @@ public class WebDialog extends WebControl {
 
         public void Test()
         {
-            Dialog.getTitle();
+        	this.getDialog().getTitle();
         }
 
 
         public void AcceptDialog()
         {
-            Dialog.AcceptDialog();
+        	this.getDialog().AcceptDialog();
         }
 
         public void CancelDialog()
         {
-            Dialog.CancelDialog();
+        	this.getDialog().CancelDialog();
         }
 
         public String GetDialogText()
         {
-            return Dialog.GetDialogText();
+            return this.getDialog().GetDialogText();
         }
         public void SendText(String value)
         {
-            Dialog.SendText(value);
+        	this.getDialog().SendText(value);
         }
 
 }

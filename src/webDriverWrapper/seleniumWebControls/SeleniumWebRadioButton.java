@@ -7,8 +7,8 @@ import webDriverWrapper.ControlType;
 import webDriverWrapper.iControlHierarchy.IRadioButton;
 
 public class SeleniumWebRadioButton extends SeleniumWebControls implements IRadioButton{
-	public SeleniumWebRadioButton(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebRadioButton(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement, ControlType, access);
 	
 	}
 
@@ -18,7 +18,7 @@ public class SeleniumWebRadioButton extends SeleniumWebControls implements IRadi
 		
 		if (!getIsChecked())
         {
-            aWebElement.click();
+            WebElement.click();
         }
 		
 	}

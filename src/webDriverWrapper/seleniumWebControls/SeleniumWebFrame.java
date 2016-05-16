@@ -7,8 +7,8 @@ import webDriverWrapper.ControlType;
 import webDriverWrapper.iControlHierarchy.IFrame;
 
 public class SeleniumWebFrame extends SeleniumWebControls implements IFrame{
-	public SeleniumWebFrame(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebFrame(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement, ControlType, access);
 	
 	}
 }

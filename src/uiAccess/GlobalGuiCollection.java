@@ -4,27 +4,25 @@ import java.nio.file.Path;
 import java.util.Dictionary;
 
 public class GlobalGuiCollection {
-        private static log4net.ILog Logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static log4j.ILog Logger = log4j.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private static Dictionary<String, Dictionary<String, Guimap>> globalPageCollection;
 
         public GlobalGuiCollection()
         {
-            log4net.ThreadContext.Properties["myContext"] = "Logging from GlobalGuiCollection Class";
-            Logger.Debug("Inside GlobalGuiCollection Constructor!");
+            log4j.ThreadContext.Properties["myContext"] = "Logging from GlobalGuiCollection Class";
+            System.out.println("Inside GlobalGuiCollection Constructor!");
         }   
 
-        public static Dictionary<String, Dictionary<String, Guimap>> GlobalPageCollection
+        public static Dictionary<String, Dictionary<String, Guimap>> getGlobalPageCollection(){
         {
-            get
-            {
+         
                 if (null == globalPageCollection)
                 {
                     globalPageCollection = new Dictionary<String, Dictionary<String, Guimap>>();
                 }
                 return globalPageCollection;
             }
-		}
 
         public static Dictionary<String, Guimap> GetGuimap(String filepath)
         {
@@ -32,14 +30,13 @@ public class GlobalGuiCollection {
             Dictionary<String, Dictionary<String, Guimap>> collection = null;
             String filename = Path.getName(filepath);
             filename = filename.substring(0, filename.length() - 4);
-            Logger.Debug(String.Concat("Checking for ", filename, " Object Collection"));
+            System.out.println(String.concat("Checking for " + filename + " Object Collection"));
 
             collection = GlobalPageCollection;
 
             if (collection != null && collection.ContainsKey(filename))
             {
-                Logger.Debug(String.Concat("Looks like there is an already existing ",
-                    filename, " Object Collection"));
+                System.out.println(String.concat("Looks like there is an already existing "+ filename + " Object Collection"));
 
                     collection = globalPageCollection;
                     //if (!collection.ContainsKey(filename))
@@ -64,7 +61,7 @@ public class GlobalGuiCollection {
             lock(globalPageCollection)
             {
                 GlobalPageCollection.Add(filename, GuiMapParser.GetInstance().LoadGuiMap(filepath));
-                Logger.Debug(String.Concat("Successfully Created ", filename, " Object Collection!"));
+                Logger.Debug(String.concat("Successfully Created ", filename, " Object Collection!"));
             }            
         }
 

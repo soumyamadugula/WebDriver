@@ -1,11 +1,13 @@
 package uiAccess.webControls;
 
+import uiAccess.Locator;
+import webDriverWrapper.ControlType;
 import webDriverWrapper.Drivers.Browser;
 import webDriverWrapper.iControlHierarchy.ICheckBox;
 
-public class WebCheckBox {
-	 public WebCheckBox(Browser aBrowser, Locator aLocator){
-     super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.CheckBox)}
+public class WebCheckBox extends WebControl {
+	 public WebCheckBox(Browser Browser, Locator Locator){
+     super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.CheckBox);}
  { }
 
  private ICheckBox getCheckBox()
@@ -18,7 +20,7 @@ public class WebCheckBox {
 
  public void Check()
  {
-     CheckBox.Check();
+	 this.getCheckBox().Check();
  }
          
 

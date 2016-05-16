@@ -8,8 +8,8 @@ import webDriverWrapper.iControlHierarchy.ICheckBox;
 
 public class SeleniumWebCheckBox extends SeleniumWebControls implements ICheckBox {
 	
-	public SeleniumWebCheckBox(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebCheckBox(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement, ControlType, access);
 	
 	}
 	
@@ -18,7 +18,7 @@ public class SeleniumWebCheckBox extends SeleniumWebControls implements ICheckBo
     {
         if(!getIsChecked())
         {
-            aWebElement.click();
+            WebElement.click();
         }
     }       
 }

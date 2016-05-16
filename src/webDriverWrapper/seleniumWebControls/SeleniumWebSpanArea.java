@@ -8,11 +8,11 @@ import webDriverWrapper.iControlHierarchy.ISpanArea;
 
 public class SeleniumWebSpanArea extends SeleniumWebControls implements ISpanArea {
 	
-	public SeleniumWebSpanArea(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebSpanArea(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement,ControlType, access);
 	
 	
-         this.aControlAccess = access;
+         this.ControlAccess = access;
      }
 
      /// <summary>

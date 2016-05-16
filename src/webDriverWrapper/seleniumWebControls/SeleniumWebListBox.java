@@ -7,8 +7,8 @@ import webDriverWrapper.ControlType;
 import webDriverWrapper.iControlHierarchy.IListBox;
 
 public class SeleniumWebListBox extends SeleniumWebControls implements IListBox {
-	public SeleniumWebListBox(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebListBox(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement, ControlType, access);
 	
 	}
 }

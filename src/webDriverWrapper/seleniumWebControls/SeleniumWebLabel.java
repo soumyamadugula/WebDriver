@@ -7,8 +7,8 @@ import webDriverWrapper.ControlType;
 import webDriverWrapper.iControlHierarchy.ILabel;
 
 public class SeleniumWebLabel extends SeleniumWebControls implements ILabel{
-	public SeleniumWebLabel(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebLabel(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement, ControlType, access);
 	
 	}
 }

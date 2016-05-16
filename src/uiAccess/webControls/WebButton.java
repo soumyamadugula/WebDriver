@@ -6,9 +6,9 @@ import webDriverWrapper.Drivers.Browser;
 import webDriverWrapper.iControlHierarchy.IButton;
 
 public class WebButton extends WebControl {
-        public WebButton(Browser aBrowser, Locator aLocator ) {
-            super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.Button) }
-        { }
+        public WebButton(Browser Browser, Locator Locator ) {
+            super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.Button);
+         }
 
         private IButton getButton()
         {
@@ -19,9 +19,6 @@ public class WebButton extends WebControl {
 
         public void Click()
         {
-            Button.Click();
+        	 this.getButton().Click();
         }
-
-    }
-}
 }

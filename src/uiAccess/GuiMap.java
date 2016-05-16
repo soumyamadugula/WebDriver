@@ -18,7 +18,7 @@ public class GuiMap {
       /// <summary>
       /// Initializes a new instance of the <see cref="Guimap"/> class.
       /// </summary>
-      public Guimap()
+      public GuiMap()
       {
           //log4net.ThreadContext.Properties["myContext"] = "Logging from GuiMap Class";
           nowTimeStamp = new Date();
@@ -28,8 +28,8 @@ public class GuiMap {
       {
         
               return nowTimeStamp;
-        
-              public Date setLastUsedTime()
+      }        
+              public Date setLastUsedTime() {
           
               nowTimeStamp = value;
           
@@ -66,7 +66,7 @@ public class GuiMap {
       /// </value>
       public String getLogicalName()
            { return logicalName; }
-      public String getLogicalName()
+      public String setLogicalName()
       { logicalName = value; }
       
 
@@ -125,7 +125,7 @@ public class GuiMap {
       { content = value; }
       
 
-      public String getAtribute
+      public String getAtribute()
            { return atribute; }
-      public String setAtribute { atribute = value; }
+      public String setAtribute() { atribute = value; }
 }

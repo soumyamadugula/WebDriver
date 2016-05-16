@@ -7,11 +7,12 @@ import webDriverWrapper.iControlHierarchy.IListBox;
 
 public class WebListBox extends WebControl
 {
-    public WebListBox(Browser aBrowser, Locator aLocator){
-        super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.ListBox)}
+    public WebListBox(Browser Browser, Locator Locator){
+        super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.ListBox);}
     { }
 
-    private IListBox getListBox()
+    @SuppressWarnings("unused")
+	private IListBox getListBox()
     {
         
             return (IListBox)Control;

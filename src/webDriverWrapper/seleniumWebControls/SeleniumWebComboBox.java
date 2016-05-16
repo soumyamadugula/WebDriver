@@ -14,13 +14,13 @@ import webDriverWrapper.iControlHierarchy.IComboBox;
 
 public class SeleniumWebComboBox extends SeleniumWebControls implements IComboBox {
 	
-	public SeleniumWebComboBox(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebComboBox(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement, ControlType, access);
 	
 	}
 	public ReadOnlyCollection<String> GetAllOptions()
     {
-        Select element = new Select(aWebElement);
+        Select element = new Select(WebElement);
         List<WebElement> options = element.getOptions();
         List<String> optionsToReturn = new ArrayList<String>();
 
@@ -34,43 +34,43 @@ public class SeleniumWebComboBox extends SeleniumWebControls implements IComboBo
 
     public void SelectByText(String textOption)
     {
-        Select element = new Select(aWebElement);
+        Select element = new Select(WebElement);
         element.selectByVisibleText(textOption);
     }
 
     public void SelectByIndex(int index)
     {
-        Select element = new Select(aWebElement);
+        Select element = new Select(WebElement);
         element.selectByIndex(index);
     }
 
     public void SelectByValue(String value)
     {
-        Select element = new Select(aWebElement);
+        Select element = new Select(WebElement);
         element.selectByValue(value);
     }
 
     public void DeselectAll()
     {
-        Select element = new Select(aWebElement);
+        Select element = new Select(WebElement);
         element.deselectAll();
     }
 
     public void DeselectByIndex(int index)
     {
-        Select element = new Select(aWebElement);
+        Select element = new Select(WebElement);
         element.deselectByIndex(index);
     }
 
     public void DeselectByText(String text)
     {
-        Select element = new Select(aWebElement);
+        Select element = new Select(WebElement);
         element.deselectByVisibleText(text);
     }
 
     public void DeselectByValue(String value)
     {
-        Select element = new Select(aWebElement);
+        Select element = new Select(WebElement);
         element.deselectByValue(value);
     }
 
@@ -78,7 +78,7 @@ public class SeleniumWebComboBox extends SeleniumWebControls implements IComboBo
     {
         DateTime start;
         double timeElapsed = 0;
-        Select element = new Select(aWebElement);
+        Select element = new Select(WebElement);
 
 
         start = DateTime.now;
@@ -103,7 +103,7 @@ public class SeleniumWebComboBox extends SeleniumWebControls implements IComboBo
     {
         DateTime start;
         double timeElapsed = 0;
-        Select element = new Select(aWebElement);
+        Select element = new Select(WebElement);
 
         start = DateTime.Now;
 
@@ -112,8 +112,8 @@ public class SeleniumWebComboBox extends SeleniumWebControls implements IComboBo
             while (element.getOptions().Where(option => option.Text.Equals(text)).Count() == 0 && timeElapsed < maxTimeout)
             {
                 timeElapsed = ((TimeSpan)(DateTime.Now - start)).TotalMilliseconds;
-                aControlAccess.IntializeControlAccess();
-                element = new Select(aWebElement);
+                ControlAccess.IntializeControlAccess();
+                element = new Select(WebElement);
             }
         }
         catch (StaleElementReferenceException e)

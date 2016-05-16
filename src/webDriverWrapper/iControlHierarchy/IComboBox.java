@@ -1,10 +1,6 @@
 package webDriverWrapper.iControlHierarchy;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-import webDriverWrapper.seleniumWebControls.SeleniumWebRow;
 
 public interface IComboBox extends IControl {
 

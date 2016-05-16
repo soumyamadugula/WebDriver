@@ -1,5 +1,6 @@
 package uiAccess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uiAccess.webControls.WebButton;
@@ -20,154 +21,159 @@ import uiAccess.webControls.WebRadioButton;
 import uiAccess.webControls.WebRow;
 import uiAccess.webControls.WebSpanArea;
 import uiAccess.webControls.WebTable;
+import webDriverWrapper.ControlType;
+import webDriverWrapper.Drivers.Browser;
+import webDriverWrapper.iControlHierarchy.IControl;
 
 public class Utility {
 	/// <summary>
 		/// Description of Utility.
 		/// </summary>
-	       static WebControl GetWebControlFromIContol(IControl aControl, Browser aBrowser, Locator aLocator, ControlType aConrolType)
+	       @SuppressWarnings("static-access")
+		public
+		static WebControl GetWebControlFromIContol(IControl Control, Browser Browser, Locator Locator, ControlType ConrolType)
 	        {
-	            WebControl aWebControl = null;
+	            WebControl webControl = null;
 	            
-	            if (aConrolType == ControlType.Button)
+	            if (ConrolType == ControlType.Button)
 	            {
-	                WebButton aWebButton = new WebButton(aBrowser, aLocator);
-	                aWebButton.Control = aControl;
-	                aWebControl = aWebButton;
+	                WebButton webButton = new WebButton(Browser, Locator);
+	                webButton.Control = Control;
+	                webControl = webButton;
 	            }
 
-	            if (aConrolType == ControlType.EditBox)
+	            if (ConrolType == ControlType.EditBox)
 	            {
-	                WebEditBox aWebEditBox = new WebEditBox(aBrowser, aLocator);
-	                aWebEditBox.Control = aControl;
-	                aWebControl = aWebEditBox;
-	            }
-	            
-	            if (aConrolType == ControlType.Custom)
-	            {
-	                aWebControl = new WebControl(aBrowser, aLocator);
-	                aWebControl.Control = aControl;
-	                //aWebControl = aWebEditBox;
-	            }
-	            if (aConrolType == ControlType.Calender)
-	            {
-	                WebCalender aWebCalender = new WebCalender(aBrowser, aLocator);
-	                aWebCalender.Control = aControl;
-	                aWebControl = aWebCalender;
+	                WebEditBox webEditBox = new WebEditBox(Browser, Locator);
+	                webEditBox.Control = Control;
+	               webControl = webEditBox;
 	            }
 	            
-	            if (aConrolType == ControlType.ComboBox)
+	            if (ConrolType == ControlType.Custom)
 	            {
-	                WebComboBox aWebComboBox = new WebComboBox(aBrowser, aLocator);
-	                aWebComboBox.Control = aControl;
-	                aWebControl = aWebComboBox;
+	                webControl = new WebControl(Browser, Locator);
+	                webControl.Control = Control;
+	             
+	            }
+	            if (ConrolType == ControlType.Calender)
+	            {
+	            	 WebCalender webCalender = new WebCalender(Browser, Locator);
+	                 webCalender.Control = Control;
+	                 webControl = webCalender;
+	            }
+	            
+	            if (ConrolType == ControlType.ComboBox)
+	            {
+	            	WebComboBox webComboBox = new WebComboBox(Browser, Locator);
+	                webComboBox.Control = Control;
+	                webControl = webComboBox;
 	            }
 
-	            if (aConrolType == ControlType.CheckBox)
+	            if (ConrolType == ControlType.CheckBox)
 	            {
-	                WebCheckBox aWebCheckBox = new WebCheckBox(aBrowser, aLocator);
-	                aWebCheckBox.Control = aControl;
-	                aWebControl = aWebCheckBox;
+	                WebCheckBox webCheckBox = new WebCheckBox(Browser, Locator);
+	                webCheckBox.Control = Control;
+	                webControl = webCheckBox;
 	            }
 
-	            if (aConrolType == ControlType.Dialog)
+	            if (ConrolType == ControlType.Dialog)
 	            {
-	                WebDialog aWebDialog = new WebDialog(aBrowser, aLocator);
-	                aWebDialog.Control = aControl;
-	                aWebControl = aWebDialog;
+	                WebDialog webDialog = new WebDialog(Browser, Locator);
+	                webDialog.Control = Control;
+	                webControl = webDialog;
 	            }
 
-	            if (aConrolType == ControlType.Frame)
+	            if (ConrolType == ControlType.Frame)
 	            {
-	                WebFrame aWebFrame = new WebFrame(aBrowser, aLocator);
-	                aWebFrame.Control = aControl;
-	                aWebControl = aWebFrame;
+	                WebFrame webFrame = new WebFrame(Browser, Locator);
+	                webFrame.Control = Control;
+	                webControl = webFrame;
 	            }
 
-	            if (aConrolType == ControlType.Image)
+	            if (ConrolType == ControlType.Image)
 	            {
-	                WebImage aWebImage = new WebImage(aBrowser, aLocator);
-	                aWebImage.Control = aControl;
-	                aWebControl = aWebImage;
+	                WebImage webImage = new WebImage(Browser, Locator);
+	                webImage.Control = Control;
+	                webControl = webImage;
 	            }
 
-	            if (aConrolType == ControlType.Label)
+	            if (ConrolType == ControlType.Label)
 	            {
-	                WebLabel aWebLabel = new WebLabel(aBrowser, aLocator);
-	                aWebLabel.Control = aControl;
-	                aWebControl = aWebLabel;
+	                WebLabel webLabel = new WebLabel(Browser, Locator);
+	                webLabel.Control = Control;
+	                webControl = webLabel;
 	            }
 
-	            if (aConrolType == ControlType.Link)
+	            if (ConrolType == ControlType.Link)
 	            {
-	                WebLink aWebLink = new WebLink(aBrowser, aLocator);
-	                aWebLink.Control = aControl;
-	                aWebControl = aWebLink;
+	                WebLink webLink = new WebLink(Browser, Locator);
+	                webLink.Control = Control;
+	                webControl = webLink;
 	            }
 
-	            if (aConrolType == ControlType.ListBox)
+	            if (ConrolType == ControlType.ListBox)
 	            {
-	                WebListBox aWebListBox = new WebListBox(aBrowser, aLocator);
-	                aWebListBox.Control = aControl;
-	                aWebControl = aWebListBox;
+	                WebListBox webListBox = new WebListBox(Browser, Locator);
+	                webListBox.Control = Control;
+	                webControl = webListBox;
 	            }
 
-	            if (aConrolType == ControlType.Page)
+	            if (ConrolType == ControlType.Page)
 	            {
-	                WebPage aWebPage = new WebPage(aBrowser, aLocator);
-	                aWebPage.Control = aControl;
-	                aWebControl = aWebPage;
+	                WebPage webPage = new WebPage(Browser, Locator);
+	                webPage.Control = Control;
+	                webControl = webPage;
 	            }
 
-	            if (aConrolType == ControlType.RadioButton)
+	            if (ConrolType == ControlType.RadioButton)
 	            {
-	                WebRadioButton aWebRadioButton = new WebRadioButton(aBrowser, aLocator);
-	                aWebRadioButton.Control = aControl;
-	                aWebControl = aWebRadioButton;
+	                WebRadioButton webRadioButton = new WebRadioButton(Browser, Locator);
+	                webRadioButton.Control = Control;
+	                webControl = webRadioButton;
 	            }
 
-	            if (aConrolType == ControlType.SpanArea)
+	            if (ConrolType == ControlType.SpanArea)
 	            {
-	                WebSpanArea aWebSpanArea = new WebSpanArea(aBrowser, aLocator);
-	                aWebSpanArea.Control = aControl;
-	                aWebControl = aWebSpanArea;
+	                WebSpanArea webSpanArea = new WebSpanArea(Browser, Locator);
+	                webSpanArea.Control = Control;
+	                webControl = webSpanArea;
 	            }
 
-	            if (aConrolType == ControlType.WebTable)
+	            if (ConrolType == ControlType.WebTable)
 	            {
-	                WebTable aWebTable = new WebTable(aBrowser, aLocator);
-	                aWebTable.Control = aControl;
-	                aWebControl = aWebTable;
+	                WebTable webTable = new WebTable(Browser, Locator);
+	                webTable.Control = Control;
+	                webControl = webTable;
 	            }
 
-	            if (aConrolType == ControlType.WebRow)
+	            if (ConrolType == ControlType.WebRow)
 	            {
-	                WebRow aWebRow = new WebRow(aBrowser, aLocator);
-	                aWebRow.Control = aControl;
-	                aWebControl = aWebRow;
+	                WebRow webRow = new WebRow(Browser, Locator);
+	                webRow.Control = Control;
+	                webControl = webRow;
 	            }
 
-	            if (aConrolType == ControlType.WebCell)
+	            if (ConrolType == ControlType.WebCell)
 	            {
-	                WebCell aWebCell = new WebCell(aBrowser, aLocator);
-	                aWebCell.Control = aControl;
-	                aWebControl = aWebCell;
+	                WebCell webCell = new WebCell(Browser, Locator);
+	                webCell.Control = Control;
+	                webControl = webCell;
 	            }
 	            
 	            
-	            return aWebControl;
+	            return webControl;
 	        }
 
-	        static List<WebControl> GetWebControlsFromIControlList(List<IControl> aIControlList, Browser aBrowser, Locator aLocator,ControlType aConrolType)
+	        public static List<WebControl> GetWebControlsFromIControlList(List<IControl> aIControlList, Browser Browser, Locator Locator,ControlType ConrolType)
 	        {
-	            List<WebControl> aWebControlList = new List<WebControl>();
+	            List<WebControl> webControlList = new ArrayList<WebControl>();
 
-	            for (IControl aControl : aIControlList)
+	            for (IControl control : aIControlList)
 	            {
-	                aWebControlList.Add(GetWebControlFromIContol(aControl, aBrowser, aLocator, aConrolType));               
+	                webControlList.add(GetWebControlFromIContol(control, Browser, Locator, ConrolType));               
 	            }
 
-	            return aWebControlList;
+	            return webControlList;
 	        }
 	        
 	    }

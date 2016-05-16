@@ -1,6 +1,7 @@
 package uiAccess.webControls;
 
 import uiAccess.Locator;
+import webDriverWrapper.ControlType;
 import webDriverWrapper.Drivers.Browser;
 import webDriverWrapper.iControlHierarchy.IWebTable;
 
@@ -8,11 +9,11 @@ public class WebTable extends WebControl{
     private Browser browser;
     private Locator locator;
 
-    public WebTable(Browser aBrowser, Locator aLocator){
-        super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.WebTable)}
+    public WebTable(Browser Browser, Locator Locator){
+        super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.WebTable)}
     {
-        browser = aBrowser;
-        locator = aLocator;
+        browser = Browser;
+        locator = Locator;
     }
 
     private IWebTable getWebTables()   {

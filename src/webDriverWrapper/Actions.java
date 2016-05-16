@@ -1,13 +1,12 @@
 package webDriverWrapper;
 //import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-
+import org.openqa.selenium.interactions.Action;
 import webDriverWrapper.Drivers.Browser;
 import webDriverWrapper.iControlHierarchy.IControl;
 import webDriverWrapper.seleniumWebControls.SeleniumWebControls;
 
-public class SeleniumActions {
+public class Actions {
 	
 	WebDriver webdriver;
 	static WebElement webelement;
@@ -31,39 +30,40 @@ public class SeleniumActions {
 	 {
 		 this.webelement = webelement;
 	 }
-     private Actions getSeleniumSeleniumActions()
-     {
-         
-     }
      private Actions getSeleniumActions()
      {
              return Actions(WebDriver);
          
      }
 
-     public SeleniumActions(Browser browser, SeleniumWebControls control)
+     @SuppressWarnings("unused")
+	public Actions(Browser browser, SeleniumWebControls control)
      {
     	 WebDriver WebDriver = browser.BrowserHandle;
-    	 WebElement WebElement = control.aWebElement;
+    	 WebElement WebElement = control.WebElement;
      }
 
-     public SeleniumActions(WebDriver webdriver, WebElement webElement)
+     @SuppressWarnings("unused")
+	public Actions(WebDriver webdriver, WebElement webElement)
      {
-    	 WebDriver WebDriver = webdriver;
+    
+		WebDriver WebDriver = webdriver;
          WebElement WebElement = webElement;
      }
 
-     public static void MoveToElement(WebElement WebElement)
+     public static void MoveToElement(IControl WebElement)
      {
          //Thread.Sleep(10000);
-         SeleniumActions.MoveToElement((WebElement.aWebElement).Build().Perform();
-         //Thread.Sleep(10000);
+        // SeleniumActions.MoveToElement((WebElement.aWebElement).Build().Perform();
+
+         SeleniumActions.MoveToElement(WebElement.WebElement).Build().Perform();
+    	 //Thread.Sleep(10000);
          //element.Click().Build().Perform();
      }
 
      public static void MoveToElement(int offSetX, int offSetY)
      {
-         Actions.moveToElement(webelement, offSetX, offSetY).Build().Perform();
+         Actions.MoveToElement(webelement, offSetX, offSetY).Build().Perform();
      }
 
      public void DragDrop(IControl target)
@@ -80,7 +80,7 @@ public class SeleniumActions {
      {
          SeleniumActions.MoveToElement(((SeleniumWebControls)WebElement).aWebElement).Click().Build().Perform();
      }
-     public void SendKeys(String keys)
+     public static void SendKeys(String keys)
      {
          SeleniumActions.SendKeys(keys);
 
@@ -101,12 +101,10 @@ public class SeleniumActions {
          SeleniumActions.ClickAndHold(((SeleniumWebControls)WebElement).aWebElement).Build().Perform();
      }
 
-     public void MoveByOffset(int xOffset, int yOffset)
+     public static void MoveByOffset(int xOffset, int yOffset)
      {
          SeleniumActions.MoveByOffset(xOffset, yOffset).Build().Perform();
 
-     }
- }
 }
 
 }

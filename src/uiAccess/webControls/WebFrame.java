@@ -8,11 +8,12 @@ import webDriverWrapper.iControlHierarchy.IFrame;
 public class WebFrame extends WebControl{
 	
     
-        public WebFrame(Browser aBrowser, Locator aLocator){
-            super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.Frame)}
+        public WebFrame(Browser Browser, Locator Locator){
+            super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.Frame);}
         { }
 
-        private IFrame getFrame()
+        @SuppressWarnings("unused")
+		private IFrame getFrame()
         {
            
            

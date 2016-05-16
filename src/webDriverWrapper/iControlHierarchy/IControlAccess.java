@@ -6,7 +6,7 @@ import webDriverWrapper.ControlType;
 import webDriverWrapper.LocatorType;
 
 public class IControlAccess {
-	 IControl GetControl() {
+	 public IControl GetControl() {
 		return null;
 	}
 

@@ -7,11 +7,12 @@ import webDriverWrapper.iControlHierarchy.IRadioButton;
 
 public class WebRadioButton extends WebControl
 	    {
-	        public WebRadioButton(Browser aBrowser, Locator aLocator){
-	            super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.RadioButton)}
+	        public WebRadioButton(Browser Browser, Locator Locator){
+	            super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.RadioButton);}
 	         
 
-	        private IRadioButton getRadioButton()
+	        @SuppressWarnings("unused")
+			private IRadioButton getRadioButton()
 	        {
 	                return (IRadioButton)Control;
 	           

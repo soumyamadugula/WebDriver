@@ -7,7 +7,7 @@ import webDriverWrapper.ControlType;
 import webDriverWrapper.iControlHierarchy.ILink;
 
 public class SeleniumWebLink extends SeleniumWebControls implements ILink {
-	public SeleniumWebLink(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebLink(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement, ControlType, access);
 	}
 }

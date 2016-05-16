@@ -25,7 +25,7 @@ import webDriverWrapper.iControlHierarchy.IControlAccess;
 	        //public BrowserType BrowserType { get; set; }
 	        
 	        private WebElement aWebElement;
-	        private ReadOnlyCollection<WebElement> aWebElements;
+	        private List<WebElement> aWebElements;
 	        private WebDriver aWebDriver;
 	        private String aLocator;
 	        private LocatorType aLocatorType;

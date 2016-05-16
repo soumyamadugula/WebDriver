@@ -7,11 +7,12 @@ import webDriverWrapper.iControlHierarchy.IPage;
 
 public class WebPage extends WebControl
 {
-    public WebPage(Browser aBrowser, Locator aLocator){
-        super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.Page)}
+    public WebPage(Browser Browser, Locator Locator){
+        super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.Page);}
     { }
 
-    private IPage getPage()
+    @SuppressWarnings("unused")
+	private IPage getPage()
     {
        
             return (IPage)Control;

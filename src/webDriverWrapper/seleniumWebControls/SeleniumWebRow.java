@@ -8,24 +8,24 @@ import webDriverWrapper.iControlHierarchy.IWebRow;
 
 public class SeleniumWebRow extends SeleniumWebControls implements IWebRow {
 	
-	public SeleniumWebRow(WebElement aWebElement, ControlType aControlType,
-			ControlAccess access){super(aWebElement, aControlType, access);
+	public SeleniumWebRow(WebElement WebElement, ControlType ControlType,
+			ControlAccess access){super(WebElement, ControlType, access);
 	
 	
 	
-        this.aControlAccess = access;
+        this.ControlAccess = access;
     }
 
     //public ReadOnlyCollection<IWebElement> GetCells()
     //{
-    //    return aWebElement.FindElements(By.TagName("td"));
+    //    return WebElement.FindElements(By.TagName("td"));
     //}
 
     
 
     public ReadOnlyCollection<SeleniumWebCell> GetAllCells()
     {
-        return Utility.GetControlsFromWebElements(aWebElement.FindElements(By.TagName("td")), ControlType.WebCell, controlAccess).Cast<SeleniumWebCell>().ToList().AsReadOnly();
+        return Utility.GetControlsFromWebElements(WebElement.FindElements(By.TagName("td")), ControlType.WebCell, controlAccess).Cast<SeleniumWebCell>().ToList().AsReadOnly();
     }
 
 }

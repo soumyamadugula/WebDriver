@@ -11,39 +11,39 @@ public class GuiMapParser {
     //private static log4net.ILog Logger =
     //   log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()
     //   .DeclaringType);
-    //Identifier constants
+    //Identifier staticants
     /// <summary>
     /// The identifier
     /// </summary>
-    private const String id = "id";// public static final
+    private static String id = "id";// public static final
     /// <summary>
     /// The name
     /// </summary>
-    private const String name = "name";
+    private static String name = "name";
     /// <summary>
     /// The xpath
     /// </summary>
-    private const String xpath = "xpath";
+    private static String xpath = "xpath";
     /// <summary>
     /// The classname
     /// </summary>
-    private const String classname = "class";
+    private static String classname = "class";
     /// <summary>
     /// The tagname
     /// </summary>
-    private const String tagname = "tagname";
+    private static String tagname = "tagname";
     /// <summary>
     /// The content
     /// </summary>
-    private const String content = "content";
+    private static String content = "content";
     /// <summary>
     /// The atribute
     /// </summary>
-    private const String atribute = "atribute";
+    private static String atribute = "atribute";
     /// <summary>
     /// The XML node path
     /// </summary>
-    private const String xmlNodePath = "/ObjectRepository/FeatureSet";
+    private static String xmlNodePath = "/ObjectRepository/FeatureSet";
     /// <summary>
     /// The GUI map parser
     /// </summary>
@@ -81,11 +81,11 @@ public class GuiMapParser {
     /// <returns></returns>
     /// <exception cref="Ecolab.TelerikPlugin.ResourceException"></exception>
     /// <exception cref="TCDFrameworkException"></exception>
-    public Dictionary<String, Guimap> LoadGuiMap(String filePath)
+    public Dictionary<String, GuiMap> LoadGuiMap(String filePath)
     {
         //Logger.Debug("Creating instance of XML Document");
         XmlDocument doc = new XmlDocument();
-        Dictionary<String, Guimap> guiObjCollection = null;
+        Dictionary<String, GuiMap> guiObjCollection = null;
         try
         {
             //Logger.Debug(String.Concat("Loading the Guimap xml file : [", filePath, "]"));
@@ -93,14 +93,14 @@ public class GuiMapParser {
             XmlNodeList rootNode = doc.DocumentElement.SelectNodes(xmlNodePath);
             //Create a dictionary object that can hold key value pairs of String and GUIMap objects
             guiObjCollection = new Dictionary<String, Guimap>();
-            Guimap guimap = null;
+            GuiMap guimap = null;
             for (XmlNode featureSetNode : rootNode)
             {
 
                 XmlNodeList elementNodes = featureSetNode.ChildNodes;
                 for (XmlNode node : elementNodes)
                 {
-                    guimap = new Guimap();
+                    guimap = new GuiMap();
                     String logicalName = node.Attributes["name"].InnerText;
                     String identificationType = node.FirstChild.Name;
                     String elementValue = node.FirstChild.InnerText;
@@ -177,7 +177,7 @@ public class GuiMapParser {
         }
         catch (FileNotFoundException fne)
         {
-            String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+      //      String methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
             //Logger.Error("File " + filePath + "not found", fne);
             String message = String.format("Exception occured while loading the values from Gui map xml {0} not found", filePath);
             //Logger.Error(message, fne);
@@ -205,9 +205,9 @@ public class GuiMapParser {
     /// or
     /// Exception occured while trying to fetch value from Guimap!
     /// </exception>
-    public String GetElementValue(Dictionary<String, Guimap> guiObjCollection, String logicalName)
+    public String GetElementValue(Dictionary<String, GuiMap> guiObjCollection, String logicalName)
     {
-        Guimap tempMap = null;
+        GuiMap tempMap = null;
         String elementValue = "";
         try
         {
@@ -245,11 +245,13 @@ public class GuiMapParser {
         }
         catch (NullPointerException e)
         {
+        	throw e;
             //Logger.Error("Exception occured while trying to fetch value from Guimap!");
             //throw new GUIException("Exception occured while trying to fetch value from Guimap!", e);
         }
         catch (IllegalArgumentException e)
         {
+        	throw e;
             //Logger.Error("Exception occured while trying to fetch value from Guimap!");
             //throw new GUIException("Exception occured while trying to fetch value from Guimap!", e);
         }

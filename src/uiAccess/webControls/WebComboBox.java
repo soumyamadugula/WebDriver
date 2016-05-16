@@ -1,14 +1,17 @@
 package uiAccess.webControls;
 
+import org.openqa.selenium.Keys;
+
 import uiAccess.Locator;
 import webDriverWrapper.ControlType;
 import webDriverWrapper.Drivers.Browser;
 import webDriverWrapper.iControlHierarchy.IComboBox;
+import webDriverWrapper.iControlHierarchy.IControl;
 
-public class WebComboBox {
-	  public WebComboBox(Browser aBrowser, Locator aLocator){
-      super(aBrowser, aLocator.LocatorType, aLocator.ControlLocator, ControlType.ComboBox)}
-  { }
+public class WebComboBox extends WebControl {
+	  public WebComboBox(Browser Browser, Locator Locator){
+      super(Browser, Locator.LocatorType, Locator.ControlLocator, ControlType.ComboBox);}
+ 
 
   private IComboBox getComboBox()
   {
@@ -20,79 +23,78 @@ public class WebComboBox {
 
   public ReadOnlyCollection<String> GetAllOptions()
   {
-      return ComboBox.GetAllOptions();
+      return getComboBox().GetAllOptions();
   }
 
   public void SelectByText(String textOption)
   {
-      ComboBox.SelectByText(textOption);
+	  this.getComboBox().SelectByText(textOption);
   }
 
   public void SelectByText(String textOption, int timeOut)
   {
-      ComboBox.SelectByText(textOption, timeOut);
+	  this.getComboBox().SelectByText(textOption, timeOut);
   }
 
   public void SelectByIndex(int index)
   {
-      ComboBox.SelectByIndex(index);
+	  this.getComboBox().SelectByIndex(index);
   }
 
   public void SelectByIndex(int index, int timeOut)
   {
-      ComboBox.SelectByIndex(index, timeOut);
+	  this.getComboBox().SelectByIndex(index, timeOut);
   }
 
   public void SelectByValue(String value)
   {
-      ComboBox.SelectByValue(value);
+	  this.getComboBox().SelectByValue(value);
   }
 
   public void DeselectAll()
   {
-      ComboBox.DeselectAll();
+	  this.getComboBox().DeselectAll();
   }
 
   public void DeselectByIndex(int index)
   {
-      ComboBox.DeselectByIndex(index);
+	  this.getComboBox().DeselectByIndex(index);
   }
 
   public void DeselectByText(String text)
   {
-      ComboBox.DeselectByText(text);
+	  this.getComboBox().DeselectByText(text);
   }
 
   public void DeselectByValue(String value)
   {
-      ComboBox.DeselectByValue(value);
+	  this.getComboBox().DeselectByValue(value);
   }
 
   public void NativeSelect(String text, String childrenXpath, int timeOut)
   {
-      ComboBox.Click();
+	  this.getComboBox().Click();
 
-      byte[] test = ComboBox.WaitForChildren(childrenXpath, timeOut);
 
-      for (IControl option : ComboBox.WaitForChildren(childrenXpath, timeOut))
+      for (IControl option : getComboBox().WaitForChildren(childrenXpath, timeOut))
       {
-          if (!option.Text.Equals(text))
+          if (!option.getText().equals(text))
           {
-              ComboBox.SendKeys(WebDriverWrapper.Keys.KeyDown);
+        	  getComboBox().SendKeys(Keys.DOWN);
           }
           else
           {
               break;
           }
       }
-      if (childrenXpath.Contains("optgroup"))
+      if (childrenXpath.contains("optgroup"))
       {
-          ComboBox.SendKeys(WebDriverWrapper.Keys.KeyDown);
-          ComboBox.SendKeys(WebDriverWrapper.Keys.Enter);
+    	  getComboBox().SendKeys(Keys.DOWN);
+    	  getComboBox().SendKeys(Keys.RETURN);
       }
       else
       {
-          ComboBox.SendKeys(WebDriverWrapper.Keys.Enter);
+    	  getComboBox().SendKeys(Keys.RETURN);
       }
   }
 
